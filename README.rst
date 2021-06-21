@@ -28,5 +28,5 @@ The comment should be added to the end of line of constant settings and PHONY ta
 
 Then, type :code:`mrun` in the same directory as your Makefile.
 
-.. image:: example/mrun.png
+.. image:: https://github.com/de9uch1/make-runner/blob/master/example/mrun.png
    :alt: screenshot
