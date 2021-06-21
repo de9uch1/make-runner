@@ -2,7 +2,11 @@
 name = "make-runner"
 version = "0.1.0"
 description = "Enhanced Makefile-based task runner"
+readme = "README.rst"
 authors = ["Hiroyuki Deguchi <deguchi.hiroyuki.db0@is.naist.jp>"]
+repository = "https://github.com/de9uch1/make-runner"
+license = "MIT"
+
 
 [tool.poetry.dependencies]
 python = "^3.7"

@@ -7,7 +7,7 @@ You can install via pip.
 
 ::
 
-   pip install git+https://github.com/de9uch1/make-runner
+   pip install make-runner
 
 Usage
 #####
