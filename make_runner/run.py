@@ -43,7 +43,7 @@ def main():
             args, utils.normalize_option_name(option_name, argument=False), None
         )
         if option_value is not None:
-            runner.append("{}='{}'".format(option_name, option_value))
+            runner.append("{}={}".format(option_name, option_value))
 
     subprocess.run(runner)
 
