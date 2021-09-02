@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "make-runner"
-version = "0.1.2"
+version = "0.2.0"
 description = "Enhanced Makefile-based task runner"
 readme = "README.rst"
 authors = ["Hiroyuki Deguchi <deguchi.hiroyuki.db0@is.naist.jp>"]

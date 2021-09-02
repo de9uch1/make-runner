@@ -12,12 +12,14 @@ You can install via pip.
 Usage
 #####
 All you have to do is add a comment starting with :code:`##` to your Makefile.
-The comment should be added to the end of line of constant settings and PHONY targets.
+The comment should be added to the end of line of PHONY targets and the above line of constant settings.
 
 .. code-block:: makefile
 
-   SRC_FILE := source.txt ## source filename
-   TGT_FILE := target.txt ## target filename
+   ## source filename
+   SRC_FILE := source.txt
+   ## target filename
+   TGT_FILE := target.txt
 
    $(TGT_FILE): $(SRC_FILE)
         cp $(SRC_FILE) $(TGT_FILE)

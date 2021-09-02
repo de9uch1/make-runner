@@ -1,5 +1,7 @@
-SRC_FILE := source.txt ## source filename
-TGT_FILE := target.txt ## target filename
+## source filename
+SRC_FILE := source.txt
+## target filename
+TGT_FILE := target.txt
 
 $(TGT_FILE): $(SRC_FILE)
 	cp $(SRC_FILE) $(TGT_FILE)
