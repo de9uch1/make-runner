@@ -10,10 +10,10 @@ from argparse import Namespace
 
 from make_runner import utils
 
-TASK_PATTERN = re.compile(r"^(?P<name>[a-zA-Z0-9_-]+):.*?##[ \t]*(?P<desc>.*)$")
-OPTION_DESC_PATTERN = re.compile(r"^##[ \t]*(?P<desc>.*)$")
+TASK_PATTERN = re.compile(r"^(?P<name>[a-zA-Z0-9_-]+):.*?##\s*(?P<desc>.*)$")
+OPTION_DESC_PATTERN = re.compile(r"^##\s*(?P<flag>%FLAG%)?\s*(?P<desc>.*)$")
 OPTION_DEF_PATTERN = re.compile(
-    r"^[ \t]*(?P<name>[a-zA-Z0-9_]+)[ \t]*:?=[ \t]*(?P<default>.*?)[ \t]*$"
+    r"^\s*(?P<name>[a-zA-Z0-9_]+)\s*:?=\s*(?P<default>.*?)?\s*$"
 )
 
 
@@ -28,18 +28,19 @@ def read_makefile(path: str):
             match_task = TASK_PATTERN.match(line)
             if match_task is not None:
                 tasks.append(match_task.groupdict())
+                continue
 
             # option
             match_option_desc = OPTION_DESC_PATTERN.match(line)
-            match_option_def = OPTION_DEF_PATTERN.match(line)
             if match_option_desc is not None:
-                option["desc"] = match_option_desc.groupdict()["desc"]
+                option.update(match_option_desc.groupdict())
                 continue
 
+            match_option_def = OPTION_DEF_PATTERN.match(line)
             if len(option) > 0 and match_option_def is not None:
                 option.update(match_option_def.groupdict())
                 options.append(option)
-            option = {}
+                option = {}
 
     return tasks, options
 

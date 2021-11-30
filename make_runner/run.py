@@ -3,8 +3,6 @@
 # This software is released under the MIT License.
 # http://opensource.org/licenses/mit-license.php
 import os
-import subprocess
-import sys
 from itertools import chain
 
 from make_runner import command_line, makefile_parser, utils
@@ -42,10 +40,14 @@ def main():
         option_value = getattr(
             args, utils.normalize_option_name(option_name, argument=False), None
         )
+        if option.get("flag", False):
+            runner.append("{}=1".format(option_name))
+            continue
         if option_value is not None:
             runner.append("{}={}".format(option_name, option_value))
+            continue
 
-    subprocess.run(runner)
+    os.execvp(runner[0], runner)
 
 
 if __name__ == "__main__":

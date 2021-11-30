@@ -127,6 +127,8 @@ def parse_args(tasks: list, options: list):
         if default is not None and len(default) > 0:
             help += " (default: {})".format(default)
             task_parser.add_argument(argument, default=option["default"], help=help)
+        elif option["flag"] is not None:
+            task_parser.add_argument(argument, help=help, action="store_true")
         else:
             task_parser.add_argument(argument, help=help)
     parser.add_argument(
