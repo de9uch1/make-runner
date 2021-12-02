@@ -40,8 +40,9 @@ def main():
         option_value = getattr(
             args, utils.normalize_option_name(option_name, argument=False), None
         )
-        if option.get("flag", False):
-            runner.append("{}=1".format(option_name))
+        if option["flag"] is not None:
+            if option_value:
+                runner.append("{}=1".format(option_name))
             continue
         if option_value is not None:
             runner.append("{}={}".format(option_name, option_value))
