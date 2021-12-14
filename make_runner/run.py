@@ -32,7 +32,10 @@ def main():
     for option in ["makefile", "jobs", "load_average"]:
         if getattr(args, option, None) is not None:
             runner.append(utils.normalize_option_name(option))
-            runner.append(args.option)
+            if option == "makefile":
+                runner.append(makefile_path)
+            else:
+                runner.append(getattr(args, option))
 
     runner += args.tasks
     for option in options:
