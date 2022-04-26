@@ -2,28 +2,38 @@
 #
 # This software is released under the MIT License.
 # http://opensource.org/licenses/mit-license.php
+
 import os
-from itertools import chain
 
 from make_runner import command_line, makefile_parser, utils
 
 
-def main():
+def main() -> None:
+    """Main funtion.
+
+    1. Parses make-runner arguments.
+    2. Finds a main makefile and reads tasks and options from the all included makefile.
+    3. Parses tasks and options arguments.
+    4. Builds the expected command-line.
+    5. Executes `make` with the given arguments.
+    """
+    # 1. Parses make-runner arguments.
     args = command_line.parse_runner_args()
+
+    # 2. Finds a main makefile and reads tasks and options from the all included makefile.
     makefile_path = makefile_parser.find_makefile(args)
     os.chdir(os.path.dirname(makefile_path))
     makefile_list = makefile_parser.get_makefile_list(makefile_path)
     tasks, options = [], []
     for f in makefile_list:
-        tasks_i, options_i = makefile_parser.read_makefile(f)
-        tasks.append(tasks_i)
-        options.append(options_i)
-    tasks, options = list(chain.from_iterable(tasks)), list(
-        chain.from_iterable(options)
-    )
+        f_tasks, f_options = makefile_parser.read_makefile(f)
+        tasks += f_tasks
+        options += f_options
 
+    # 3. Parses tasks and options arguments.
     args = command_line.parse_args(tasks, options)
 
+    # 4. Builds the expected command-line.
     runner = [utils.make_command()]
 
     for option in ["always_make", "keep_going", "dry_run", "silent", "touch"]:
@@ -51,6 +61,7 @@ def main():
             runner.append("{}={}".format(option_name, option_value))
             continue
 
+    # 5. Executes `make` with the given arguments.
     os.execvp(runner[0], runner)
 
 

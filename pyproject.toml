@@ -1,18 +1,22 @@
+[tool.isort]
+profile = "black"
+
 [tool.poetry]
 name = "make-runner"
-version = "0.2.0"
+version = "0.2.1"
 description = "Enhanced Makefile-based task runner"
 readme = "README.rst"
 authors = ["Hiroyuki Deguchi <deguchi.hiroyuki.db0@is.naist.jp>"]
 repository = "https://github.com/de9uch1/make-runner"
 license = "MIT"
 
-
 [tool.poetry.dependencies]
 python = "^3.7"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
+black = "^22.3.0"
+isort = "^5.10.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
