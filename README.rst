@@ -30,5 +30,5 @@ The comment should be added to the end of line of PHONY targets and the above li
 
 Then, type :code:`mrun` in the same directory as your Makefile.
 
-.. image:: https://github.com/de9uch1/make-runner/blob/master/example/mrun.png
+.. image:: https://raw.githubusercontent.com/de9uch1/make-runner/main/example/mrun.png
    :alt: screenshot
