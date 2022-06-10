@@ -22,7 +22,8 @@ def main() -> None:
 
     # 2. Finds a main makefile and reads tasks and options from the all included makefile.
     makefile_path = makefile_parser.find_makefile(args)
-    os.chdir(os.path.dirname(makefile_path))
+    if not args.makefile:
+        os.chdir(os.path.dirname(makefile_path))
     makefile_list = makefile_parser.get_makefile_list(makefile_path)
     tasks, options = [], []
     for f in makefile_list:
